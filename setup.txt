@@ -5,3 +5,20 @@ o Remove git from frontend
     o second method to remove git is to go to frontend folder and delete hidden .git folder from it.
 o move .gitignore from frontend folder to base folder i.e. PROSHOP
 o in the .gitignore file replace "/node_modules" with only "node_modules"
+
+
+o create new package.json with "npm init" in the PROSHOP base folder.
+o in the base package.json file write "type": "module" after description to support standard import thing in backend.
+o create backend folder with file server.js having just console.log('hello') in it.
+o in the base folder package.json file write one script:
+    o  "start": "node backend/server.js"
+    o this will run the server.js file
+o for the backend thing we will install all the package in the base (PROSHOP) node_modules folder
+o install express and in the server.js setup basic express and run server
+
+o install nodemon in the base as dev dependency, write following scripts in the base package.json:
+    o       "server": "nodemon backend/server.js"
+    o       "client": "npm start --prefix frontend",
+    o       "dev": "concurrently \"npm run server\" \"npm run client\""
+o for concurrently error in terminal:
+    o npm install -g concurrently
