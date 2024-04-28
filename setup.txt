@@ -1,0 +1,7 @@
+o base folder PROSHOP(MERN)
+o create-react-app frontend
+o Remove git from frontend
+    o rm -rf .git
+    o second method to remove git is to go to frontend folder and delete hidden .git folder from it.
+o move .gitignore from frontend folder to base folder i.e. PROSHOP
+o in the .gitignore file replace "/node_modules" with only "node_modules"
