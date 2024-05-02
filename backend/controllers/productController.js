@@ -37,6 +37,29 @@ const getProducts = asyncHandler(async (req, res) => {
 })
 
 
+// @desc Create a product
+// @route POST /api/products
+// @access Private/Admin
+const createProduct = asyncHandler(async (req, res) => {
+    const { name, price, brand, category, countInStock, description } = req.body;
+
+    const product = new Product({
+        name: name,
+        price: price,
+        user: req.user._id,
+        brand: brand,
+        rating: 0, //default is also 0 in product model
+        category: category,
+        countInStock: countInStock,
+        numReviews: 0, //default is also 0 in product model
+        description: description
+    });
+
+    const createdProduct = await product.save();
+    res.status(201).json(createdProduct);
+})
+
+
 // @desc Fetch single product
 // @route GET /api/products/:id
 // @access Public
@@ -110,6 +133,7 @@ const getTopProducts = asyncHandler(async (req, res) => {
 
 export {
     getProducts,
+    createProduct,
     getProductById,
     updateProduct,
     deleteProduct,
