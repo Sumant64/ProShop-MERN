@@ -1,5 +1,5 @@
 import express from 'express';
-import { deleteProduct, getProductById, getProducts, updateProduct } from '../controllers/productController.js';
+import { deleteProduct, getProductById, getProducts, getTopProducts, updateProduct } from '../controllers/productController.js';
 import checkObjectId from '../middleware/checkObjectId.js';
 import { admin, protect } from '../middleware/authMiddleware.js';
 
@@ -7,7 +7,7 @@ import { admin, protect } from '../middleware/authMiddleware.js';
 const router = express.Router();
 
 router.route('/').get(getProducts);
-
+router.get('/top', getTopProducts);
 
 router.route('/:id')
     .get(checkObjectId, getProductById)
