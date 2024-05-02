@@ -38,6 +38,24 @@ const getProducts = asyncHandler(async (req, res) => {
 
 
 
+const getProductById = asyncHandler( async (req, res) => {
+    // Note: checking for valid ObjectId to prevent CastError moved to separate
+    // middleware. See readme for more info.
+
+    const product = await Product.findById(req.params.id);
+    if(product) {
+        return res.json(product);
+    } else {
+        //Note: this wil run if a valid ObjectId but no product was found
+        // i.e. product may be null
+        res.status(400);
+        throw new Error("Product not found");
+    }
+})
+
+
+
 export {
     getProducts,
+    getProductById
 };
