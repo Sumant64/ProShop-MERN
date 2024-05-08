@@ -67,11 +67,21 @@ const registerUser = asyncHandler(async (req, res) => {
 const getUsers = asyncHandler(async (req, res) => {
     const users = await User.find({}).select('-password');
     res.json(users);
-})
+});
+
+
+// @desc Logout user / clear cookie
+// @route POST /api/users/logout
+// @access Public
+const logoutUser = asyncHandler(async (req, res) => {
+    res.clearCookie('jwt');
+    res.status(200).json({ message: 'Logged out successfully' });
+});
 
 
 export {
     authUser,
     registerUser,
-    getUsers
+    getUsers,
+    logoutUser
 };
